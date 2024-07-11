@@ -21,5 +21,12 @@ namespace extract_github_secrets.Services
             var insertOperation = TableOperation.InsertOrReplace(keyValueRecord);
             await _table.ExecuteAsync(insertOperation);
         }
+
+        public async Task<KeyValueRecord?> GetKeyValueRecordAsync(string key)
+        {
+            var retrieveOperation = TableOperation.Retrieve<KeyValueRecord>("KeyValuePartition", key);
+            var result = await _table.ExecuteAsync(retrieveOperation);
+            return result.Result as KeyValueRecord;
+        }
     }
 }

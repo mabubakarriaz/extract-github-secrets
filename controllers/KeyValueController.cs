@@ -31,8 +31,24 @@ namespace extract_github_secrets.Controllers
                 return BadRequest("Key and Value are required.");
             }
 
+            keyValueRecord.PartitionKey = "KeyValuePartition";
+            keyValueRecord.RowKey = keyValueRecord.RowKey;
+
             await _keyValueService.AddKeyValueRecordAsync(keyValueRecord);
             return Ok($"Saved key: {keyValueRecord.RowKey}, value: {keyValueRecord.Value}");
+        }
+
+        [HttpGet("{key}")]
+        public async Task<ActionResult<KeyValueRecord>> GetKeyValueRecord(string key)
+        {
+            var keyValueRecord = await _keyValueService.GetKeyValueRecordAsync(key);
+
+            if (keyValueRecord == null)
+            {
+                return NotFound($"No value found for key: {key}");
+            }
+
+            return Ok(keyValueRecord);
         }
     }
 }

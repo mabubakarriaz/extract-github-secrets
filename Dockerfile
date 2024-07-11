@@ -6,6 +6,11 @@ WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
+# Add labels here
+LABEL org.opencontainers.image.source=https://github.com/mabubakarriaz/extract-github-secrets
+LABEL org.opencontainers.image.description="Save GitHub repository secrets in plain text to azure cosmos table using C# REST API."
+LABEL org.opencontainers.image.licenses=Apache
+
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src

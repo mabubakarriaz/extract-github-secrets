@@ -1,4 +1,4 @@
-name: post secrets pipeline
+name: build pipeline
 
 on:
   push:

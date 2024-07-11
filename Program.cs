@@ -15,6 +15,7 @@ namespace extract_github_secrets
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("http://*:80");
                 });
     }
 }

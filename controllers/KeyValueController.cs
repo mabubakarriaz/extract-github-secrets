@@ -14,7 +14,8 @@ namespace extract_github_secrets.Controllers
 
         public KeyValueController(IConfiguration configuration)
         {
-            var storageConnectionString = configuration.GetValue<string>("AzureWebJobsStorage");
+            var storageConnectionString = Environment.GetEnvironmentVariable("AzureStorageConnectionString");
+            //var storageConnectionString = configuration.GetValue<string>("AzureWebJobsStorage");
             if (string.IsNullOrEmpty(storageConnectionString))
             {
                 throw new ArgumentNullException(nameof(storageConnectionString));

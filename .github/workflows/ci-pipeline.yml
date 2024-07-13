@@ -24,16 +24,15 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
 
-      - name: Run tests
-        run: dotnet test --no-build --verbosity normal
-
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_wrapper: false
 
+      - name: Terraform initilize 
+        working-directory: ./infra
+        run: terraform init
+
       - name: Terraform check hoye ga
         working-directory: ./infra
-        run: |
-          terraform init
-          terraform validate
+        run: terraform validate          

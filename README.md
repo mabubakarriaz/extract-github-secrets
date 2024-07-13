@@ -10,5 +10,4 @@ docker push ghcr.io/mabubakarriaz/extract-github-secrets:latest
 
 docker pull ghcr.io/mabubakarriaz/extract-github-secrets:latest
 
-
 docker run -d -p 8080:80 --name extract-github-secrets -e STORAGE_CONNECTION_STRING=YourAzureStorageConnectionString extract-github-secrets:latest

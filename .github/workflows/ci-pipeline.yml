@@ -32,7 +32,7 @@ jobs:
         with:
           terraform_wrapper: false
 
-      - name: Terraform Init
+      - name: Terraform check hoye ga
         working-directory: ./infra
         run: |
           terraform init

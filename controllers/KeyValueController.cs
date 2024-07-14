@@ -21,6 +21,8 @@ namespace extract_github_secrets.Controllers
                 throw new ArgumentNullException(nameof(storageConnectionString));
             }
 
+            Console.WriteLine($"Storage Connection String: {storageConnectionString}");
+
             _keyValueService = new KeyValueService(storageConnectionString);
         }
 

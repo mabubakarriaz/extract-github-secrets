@@ -10,7 +10,21 @@ namespace extract_github_secrets.Services
 
         public KeyValueService(string storageConnectionString)
         {
-            var storageAccount = CloudStorageAccount.Parse(storageConnectionString);
+
+            CloudStorageAccount storageAccount;
+            Console.WriteLine($"Storage Connection String: {storageConnectionString}");
+            
+            try
+            {
+                storageAccount = CloudStorageAccount.Parse(storageConnectionString);
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine($"Error parsing storage connection string: {ex.Message}");
+                throw;
+            }
+            
+            //var storageAccount = CloudStorageAccount.Parse(storageConnectionString);
             var tableClient = storageAccount.CreateCloudTableClient(new TableClientConfiguration());
             _table = tableClient.GetTableReference("KeyValueTable");
             _table.CreateIfNotExists();
